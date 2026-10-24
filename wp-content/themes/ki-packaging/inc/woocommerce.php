@@ -44,6 +44,11 @@ add_action( 'init', function () {
 	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
 	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 
+	// One h1 per page: the banner owns it, the product summary uses an h2.
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+	add_action( 'woocommerce_single_product_summary', function () {
+		the_title( '<h2 class="product_title entry-title">', '</h2>' );
+	}, 5 );
 	add_action( 'woocommerce_single_product_summary', 'ki_single_product_actions', 30 );
 	add_action( 'woocommerce_single_product_summary', 'ki_single_product_meta', 40 );
 } );

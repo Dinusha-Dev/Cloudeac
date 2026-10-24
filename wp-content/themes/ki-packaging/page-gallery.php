@@ -50,7 +50,7 @@ ksort( $cats );
 <div class="lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Image viewer">
 	<button class="lb-close" type="button" aria-label="Close" data-lb-close><?php ki_the_icon( 'x', '', 26 ); ?></button>
 	<button class="lb-nav lb-prev" type="button" aria-label="Previous image" data-lb-prev><?php ki_the_icon( 'chevron-left', '', 30 ); ?></button>
-	<figure class="lb-figure"><img src="" alt=""><figcaption></figcaption></figure>
+	<figure class="lb-figure"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><figcaption></figcaption></figure>
 	<button class="lb-nav lb-next" type="button" aria-label="Next image" data-lb-next><?php ki_the_icon( 'chevron-right', '', 30 ); ?></button>
 </div>
 
