@@ -11,6 +11,7 @@ function ki_settings_defaults() {
 		'company'      => 'K I Packaging Solutions',
 		'tagline'      => 'Offset Printing & Packaging Solutions',
 		'address'      => '# 411/C/4/1 Kirillawala, Kadawatha',
+		'footer_text'  => 'High-quality, cutting-edge offset printing and packaging solutions. Commitment, dedication and customer satisfaction are the heart of how we work.',
 		'phone'        => '',
 		'phone2'       => '',
 		'whatsapp'     => '',
@@ -89,6 +90,7 @@ function ki_settings_fields() {
 			'tagline'  => array( 'Tagline', 'text' ),
 			'address'  => array( 'Address', 'text' ),
 			'hours'    => array( 'Opening hours', 'text', 'e.g. Mon - Sat: 8.00 am - 5.30 pm' ),
+			'footer_text' => array( 'Footer description', 'text', 'Short text shown under the logo in the site footer' ),
 		),
 		'Contact'        => array(
 			'phone'        => array( 'Phone', 'text', 'Shown on the site and used for click-to-call' ),

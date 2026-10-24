@@ -83,6 +83,14 @@ function ki_asset( $path ) {
 /* ------------------------------------------------------------------ Hero */
 
 function ki_has_hero() {
+	if ( function_exists( 'ki_is_elementor_page' ) && is_singular( 'page' ) && ki_is_elementor_page() ) {
+		// Elementor pages get the transparent-over-hero header only when they open with a hero section.
+		$data = get_post_meta( get_queried_object_id(), '_elementor_data', true );
+		return is_string( $data ) && false !== strpos( $data, 'ki-hero' );
+	}
+	if ( function_exists( 'is_shop' ) && is_shop() && function_exists( 'ki_shop_has_elementor_hero' ) && ki_shop_has_elementor_hero() ) {
+		return true;
+	}
 	if ( is_front_page() || is_page() ) {
 		return true;
 	}

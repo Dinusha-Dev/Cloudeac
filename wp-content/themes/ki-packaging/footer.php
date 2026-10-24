@@ -18,7 +18,7 @@ $wa      = ki_wa_url();
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 				<img src="<?php echo esc_url( ki_asset( 'img/logo-light-h.png' ) ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="260" height="68" loading="lazy">
 			</a>
-			<p>High-quality, cutting-edge offset printing and packaging solutions. Commitment, dedication and customer satisfaction are the heart of how we work.</p>
+			<p><?php echo esc_html( ki_opt( 'footer_text', 'High-quality, cutting-edge offset printing and packaging solutions.' ) ); ?></p>
 			<?php if ( $socials ) : ?>
 				<ul class="social-list social-list--footer">
 					<?php foreach ( $socials as $key => $s ) : ?>

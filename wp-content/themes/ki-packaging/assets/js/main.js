@@ -67,8 +67,45 @@
 		window.addEventListener('resize', function () { if (window.innerWidth > 1120) setNav(false); });
 	}
 
+	/* ---------- Elementor-friendly helpers ---------- */
+	var inEditor = body.classList.contains('elementor-editor-active');
+
+	// Headline word animation: wraps words of any .split element so editors only type plain text.
+	function splitWords(el) {
+		var i = 0;
+		(function walk(node) {
+			Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+				if (n.nodeType === 3) {
+					var frag = doc.createDocumentFragment();
+					n.nodeValue.split(/(\s+)/).forEach(function (part) {
+						if (!part) return;
+						if (/^\s+$/.test(part)) { frag.appendChild(doc.createTextNode(' ')); return; }
+						var w = doc.createElement('span'); w.className = 'w';
+						var inner = doc.createElement('span'); inner.style.setProperty('--i', i++); inner.textContent = part;
+						w.appendChild(inner); frag.appendChild(w);
+					});
+					node.replaceChild(frag, n);
+				} else if (n.nodeType === 1 && n.tagName !== 'BR') { walk(n); }
+			});
+		})(el);
+		el.classList.add('is-split');
+	}
+	if (!inEditor) {
+		$$('.split').forEach(function (el) { if (!$('.w', el)) splitWords(el); else el.classList.add('is-split'); });
+	}
+
+	// Seamless marquee from a normal Elementor icon list.
+	$$('.marquee-list').forEach(function (w) {
+		var ul = $('ul', w);
+		if (!ul || $('.marquee-track', w)) return;
+		var track = doc.createElement('div'); track.className = 'marquee-track';
+		var clone = ul.cloneNode(true); clone.setAttribute('aria-hidden', 'true');
+		ul.parentNode.insertBefore(track, ul); track.appendChild(ul); track.appendChild(clone);
+	});
+
 	/* ---------- Scroll reveal ---------- */
-	var reveals = $$('[data-reveal]');
+	var reveals = $$('[data-reveal],.rv,.rv-left,.rv-img');
+	if (inEditor) { reveals.forEach(function (el) { el.classList.add('is-in', 'is-done'); }); reveals = []; }
 	function revealNow(el) {
 		el.classList.add('is-in');
 		setTimeout(function () { el.classList.add('is-done'); }, 1500);
@@ -85,7 +122,11 @@
 	}
 
 	/* ---------- Counters ---------- */
-	var counters = $$('[data-count]');
+	$$('.ki-count').forEach(function (el) {
+		var m = el.textContent.trim().match(/^(\D*)(\d+(?:\.\d+)?)(\D*)$/);
+		if (m) { el.setAttribute('data-prefix', m[1]); el.setAttribute('data-count', m[2]); el.setAttribute('data-suffix', m[3]); }
+	});
+	var counters = inEditor ? [] : $$('[data-count]');
 	function runCounter(el) {
 		var target = parseFloat(el.getAttribute('data-count')) || 0;
 		var pre = el.getAttribute('data-prefix') || '';
@@ -125,8 +166,8 @@
 
 	/* ---------- Tilt & magnetic (fine pointers only) ---------- */
 	if (fine && !reduce) {
-		$$('[data-tilt]').forEach(function (el) {
-			var max = parseFloat(el.getAttribute('data-tilt')) || 5;
+		$$('[data-tilt],.tilt').forEach(function (el) {
+			var max = parseFloat(el.getAttribute('data-tilt')) || (el.classList.contains('tilt-lg') ? 6 : 4);
 			el.addEventListener('pointermove', function (e) {
 				var r = el.getBoundingClientRect();
 				var x = (e.clientX - r.left) / r.width - 0.5;
@@ -135,7 +176,7 @@
 			});
 			el.addEventListener('pointerleave', function () { el.style.transform = ''; });
 		});
-		$$('[data-magnetic]').forEach(function (el) {
+		$$('[data-magnetic],.magnetic').forEach(function (el) {
 			el.addEventListener('pointermove', function (e) {
 				var r = el.getBoundingClientRect();
 				var x = (e.clientX - r.left - r.width / 2) * 0.22;
@@ -179,9 +220,10 @@
 		if (lastFocus && lastFocus.focus) lastFocus.focus();
 	}
 	doc.addEventListener('click', function (e) {
-		var q = e.target.closest('[data-quote]');
+		var q = e.target.closest('[data-quote],.ki-quote');
 		if (q) {
 			var product = q.getAttribute('data-product') || '';
+			if (q.classList.contains('ki-quote')) { var a = q.tagName === 'A' ? q : $('a', q); if (a && !a.getAttribute('data-quote')) { a.setAttribute('data-quote', ''); } }
 			if (onPageForm) {
 				prefill(onPageForm, product);
 				setNav(false);

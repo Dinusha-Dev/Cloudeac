@@ -23,13 +23,17 @@ if ( is_singular( 'product' ) ) {
 	$lead    = 'Browse our range of printed materials and packaging, then request a quotation for the items you need.';
 }
 
-ki_page_hero( array(
-	'eyebrow' => $eyebrow,
-	'title'   => $title,
-	'lead'    => $lead,
-	'image'   => is_singular( 'product' ) ? 'press-detail' : 'pallets',
-	'crumbs'  => $crumbs,
-) );
+if ( is_shop() && function_exists( 'ki_shop_has_elementor_hero' ) && ki_shop_has_elementor_hero() ) {
+	ki_render_shop_hero();
+} else {
+	ki_page_hero( array(
+		'eyebrow' => $eyebrow,
+		'title'   => $title,
+		'lead'    => $lead,
+		'image'   => is_singular( 'product' ) ? 'press-detail' : 'pallets',
+		'crumbs'  => $crumbs,
+	) );
+}
 ?>
 
 <section class="section section--first shop-section">

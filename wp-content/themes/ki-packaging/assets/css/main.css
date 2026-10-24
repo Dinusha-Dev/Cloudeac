@@ -7,6 +7,8 @@
 
 /* ---- 1. Tokens & fonts -------------------------------------------------- */
 @font-face { font-family: "Outfit"; src: url("../fonts/outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "KI Display"; src: url("../fonts/outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "KI Body"; src: url("../fonts/inter-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
 @font-face { font-family: "Inter"; src: url("../fonts/inter-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
 
 :root {
@@ -111,7 +113,7 @@ button { font: inherit; cursor: pointer; }
 .btn-sm { padding: .7em 1.15em; font-size: .88rem; border-radius: 11px; }
 
 .eyebrow { display: inline-flex; align-items: center; gap: .7em; margin-bottom: 1.1rem; font: 600 .8rem/1 var(--font-display); letter-spacing: .16em; text-transform: uppercase; color: var(--brand-700); }
-.eyebrow::before { content: ""; width: 34px; height: 2px; background: currentColor; }
+.eyebrow::before { content: ""; width: 34px; height: 2px; background: currentColor; flex: none; }
 .eyebrow--light { color: var(--brand); }
 .eyebrow--dark { color: var(--ink); }
 .section-head.center .eyebrow { justify-content: center; }
@@ -583,6 +585,23 @@ body.nav-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45de
 .no-js [data-reveal="img"]::after { display: none; }
 .no-js .split .w > span { transform: none; animation: none; }
 
+/* Class-based reveals: add rv / rv-left / rv-img (and d1..d4 for delay) to any Elementor container or widget. */
+.js .rv, .js .rv-left { opacity: 0; transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
+.js .rv { transform: translateY(34px); }
+.js .rv-left { transform: translateX(-40px); }
+.js .rv.is-in, .js .rv-left.is-in { opacity: 1; transform: none; }
+.js .rv.is-done, .js .rv-left.is-done { transition: transform .4s var(--ease), box-shadow .45s var(--ease), border-color .3s, opacity .3s; transition-delay: 0s; }
+.js .rv-img { position: relative; overflow: hidden; }
+.js .rv-img::after { content: ""; position: absolute; inset: 0; z-index: 2; background: var(--brand); transform-origin: top; transition: transform 1.15s var(--ease); transition-delay: var(--d, 0s); pointer-events: none; }
+.js .rv-img img { transform: scale(1.22); transition: transform 1.7s var(--ease); transition-delay: var(--d, 0s); }
+.js .rv-img.is-in::after { transform: scaleY(0); }
+.js .rv-img.is-in img { transform: none; }
+.d1 { --d: .1s; } .d2 { --d: .2s; } .d3 { --d: .3s; } .d4 { --d: .4s; } .d5 { --d: .5s; }
+.js .split:not(.is-split) { visibility: hidden; }
+.elementor-editor-active .split, .elementor-editor-active .rv, .elementor-editor-active .rv-left, .elementor-editor-active .rv-img { visibility: visible !important; opacity: 1 !important; transform: none !important; clip-path: none !important; }
+.elementor-editor-active .rv-img::after, .elementor-editor-active .loader { display: none !important; }
+.elementor-editor-active .rv-img img { transform: none !important; }
+
 @keyframes kenburns { from { transform: scale(1.04); } to { transform: scale(1.2); } }
 @keyframes wordIn { from { transform: translateY(112%); } to { transform: translateY(0); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
@@ -608,6 +627,10 @@ body.nav-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45de
 	.split .w > span { transform: none; }
 	.marquee-track { animation: none; }
 	.loader { display: none; }
+	.js .rv, .js .rv-left { opacity: 1; transform: none; }
+	.js .rv-img::after { display: none; }
+	.js .rv-img img { transform: none; }
+	.js .split:not(.is-split) { visibility: visible; }
 }
 
 /* ---- 12. Responsive ----------------------------------------------------- */

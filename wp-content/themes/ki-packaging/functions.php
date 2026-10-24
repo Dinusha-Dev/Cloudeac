@@ -13,6 +13,8 @@ require_once get_template_directory() . '/inc/icons.php';
 require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/seo.php';
 require_once get_template_directory() . '/inc/woocommerce.php';
+require_once get_template_directory() . '/inc/shortcodes.php';
+require_once get_template_directory() . '/inc/elementor.php';
 
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'title-tag' );
