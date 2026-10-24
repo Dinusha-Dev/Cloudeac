@@ -3,6 +3,7 @@
  * About Us.
  */
 get_header();
+ki_main_open();
 ki_page_hero( array(
 	'eyebrow' => 'About K I Packaging Solutions',
 	'title'   => 'About Us',
@@ -107,4 +108,5 @@ $sectors = array(
 
 <?php
 get_template_part( 'template-parts/cta-band' );
+ki_main_close();
 get_footer();

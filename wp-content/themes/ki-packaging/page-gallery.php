@@ -3,6 +3,7 @@
  * Gallery.
  */
 get_header();
+ki_main_open();
 ki_page_hero( array(
 	'eyebrow' => 'Our work & production floor',
 	'title'   => 'Gallery',
@@ -20,4 +21,5 @@ ki_page_hero( array(
 
 <?php
 get_template_part( 'template-parts/cta-band', null, array( 'title' => 'Like what you see?', 'text' => 'Let us produce your next print or packaging project to the same standard.' ) );
+ki_main_close();
 get_footer();

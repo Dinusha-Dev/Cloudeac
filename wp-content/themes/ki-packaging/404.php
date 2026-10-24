@@ -1,5 +1,6 @@
 <?php
 get_header();
+ki_main_open();
 ?>
 <section class="section section--first notfound">
 	<div class="container center">
@@ -10,4 +11,5 @@ get_header();
 	</div>
 </section>
 <?php
+ki_main_close();
 get_footer();

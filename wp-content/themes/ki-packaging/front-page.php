@@ -3,6 +3,7 @@
  * Home page.
  */
 get_header();
+ki_main_open();
 
 $slides     = array( 'press-detail', 'press-roll', 'open-boxes' );
 $industries = ki_industries();
@@ -233,4 +234,5 @@ if ( $featured ) :
 
 <?php
 get_template_part( 'template-parts/cta-band' );
+ki_main_close();
 get_footer();

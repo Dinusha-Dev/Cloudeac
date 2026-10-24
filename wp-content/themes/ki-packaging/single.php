@@ -1,5 +1,6 @@
 <?php
 get_header();
+ki_main_open();
 while ( have_posts() ) :
 	the_post();
 	?>
@@ -12,4 +13,5 @@ while ( have_posts() ) :
 	</article>
 	<?php
 endwhile;
+ki_main_close();
 get_footer();

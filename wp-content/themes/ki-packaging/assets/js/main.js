@@ -22,7 +22,7 @@
 	setTimeout(hideLoader, 2600);
 
 	/* ---------- Scroll state: header, progress bar, back-to-top ---------- */
-	var header = $('[data-header]');
+	var header = $('[data-header]') || $('.site-header');
 	var bar = $('.scroll-progress span');
 	var toTop = $('[data-to-top]');
 	var ticking = false;

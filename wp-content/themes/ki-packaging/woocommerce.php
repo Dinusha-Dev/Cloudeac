@@ -3,6 +3,7 @@
  * WooCommerce wrapper: shop, categories and single products.
  */
 get_header();
+ki_main_open();
 
 $crumbs = array();
 if ( is_singular( 'product' ) ) {
@@ -67,4 +68,5 @@ if ( is_shop() && function_exists( 'ki_shop_has_elementor_hero' ) && ki_shop_has
 
 <?php
 get_template_part( 'template-parts/cta-band', null, array( 'title' => "Can't find what you need?", 'text' => 'We produce custom printing and packaging to your specification. Tell us what you have in mind.' ) );
+ki_main_close();
 get_footer();

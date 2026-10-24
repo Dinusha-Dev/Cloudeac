@@ -3,6 +3,7 @@
  * Contact Us.
  */
 get_header();
+ki_main_open();
 ki_page_hero( array(
 	'eyebrow' => 'Get in touch',
 	'title'   => 'Contact Us',
@@ -97,4 +98,5 @@ $map    = ki_opt( 'map_query' );
 <?php endif; ?>
 
 <?php
+ki_main_close();
 get_footer();

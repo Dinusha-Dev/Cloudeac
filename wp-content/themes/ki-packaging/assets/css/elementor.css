@@ -323,3 +323,69 @@
 .elementor .next-steps .elementor-icon-list-text, .elementor .tick-grid .elementor-icon-list-text, .elementor .check-list .elementor-icon-list-text { flex: 1; min-width: 0; }
 .elementor .next-steps .elementor-icon-list-items { width: 100%; }
 .elementor .range-body .elementor-widget-button.link-arrow { margin-top: auto; padding-top: .4rem; }
+
+/* ==========================================================================
+   Theme Builder header and footer
+   ========================================================================== */
+/* The location wrapper sticks; the topbar slides away under the top edge and the bar stays. */
+.elementor-location-header { position: sticky; top: calc(var(--topbar-h) * -1); z-index: 1100; }
+.elementor .e-con.topbar { background: var(--ink); color: #b9b9c1; font-size: .82rem; height: var(--topbar-h); }
+.elementor .e-con.topbar > .container { height: 100%; display: flex; align-items: center; }
+.elementor .topbar .elementor-widget-shortcode, .elementor .topbar .elementor-shortcode { width: 100%; }
+.elementor .topbar .topbar-inner { height: var(--topbar-h); }
+.elementor .e-con.site-header { position: relative; height: var(--header-h); z-index: 1100; }
+.elementor .e-con.header-inner { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; height: 100%; }
+.elementor .e-con.brand { position: relative; flex: none; width: 214px; height: 56px; }
+.elementor .brand .elementor-widget-image { position: absolute; inset: 0; transition: opacity .35s var(--ease); }
+.elementor .brand .elementor-widget-image a { display: block; height: 100%; }
+.elementor .brand .elementor-widget-image img { position: absolute; left: 0; top: 50%; transform: translateY(-50%); height: 56px; width: auto; max-width: none; }
+.elementor .e-con.header-actions { display: flex; flex-direction: row; align-items: center; gap: 14px; width: auto; flex: none; }
+.elementor .header-cta .elementor-button { padding: .8em 1.4em; font-size: .92rem; }
+.elementor .nav-wrap { margin-left: auto; width: auto; flex: none; }
+.elementor .nav-toggle-wrap { width: auto; flex: none; }
+.elementor .header-cta { width: auto; flex: none; }
+.elementor .site-header .elementor-widget-shortcode { margin: 0; }
+
+/* ---- Footer -------------------------------------------------------------------------------------- */
+.elementor .e-con.site-footer { position: relative; background: var(--ink); color: #aaaab3; overflow: hidden; isolation: isolate; }
+.elementor .site-footer .footer-glow { z-index: 0; }
+.elementor .site-footer .elementor-widget-heading { color: #fff; }
+.elementor .e-con.footer-grid { display: grid; grid-template-columns: 1.5fr .8fr 1fr 1.2fr; gap: clamp(28px, 4vw, 56px); padding-block: clamp(56px, 7vw, 96px) 48px; }
+.elementor .footer-brand .elementor-widget-image.footer-logo { text-align: left; }
+.elementor .footer-brand .elementor-widget-image.footer-logo img { height: 62px; width: auto; margin-bottom: 1.3rem; }
+.elementor .footer-brand .footer-about { max-width: 38ch; color: #aaaab3; }
+.elementor .footer-col .elementor-widget-heading { position: relative; padding-bottom: .8rem; font-size: 1.05rem; }
+.elementor .footer-col .elementor-widget-heading:not(:last-child) { margin-bottom: 1.3rem; }
+.elementor .footer-col .elementor-widget-heading::after { content: ""; position: absolute; left: 0; bottom: 0; width: 34px; height: 3px; border-radius: 3px; background: var(--brand); }
+.elementor .footer-col .elementor-heading-title::after { display: none; }
+.elementor .footer-links .elementor-icon-list-items { display: block; }
+.elementor .footer-links .elementor-icon-list-icon { display: none; }
+.elementor .footer-links .elementor-icon-list-item { margin-bottom: .6rem; }
+.elementor .footer-links .elementor-icon-list-item a { display: block; color: #aaaab3; transition: color .3s, padding-left .3s var(--ease); }
+.elementor .footer-links .elementor-icon-list-item a:hover { color: var(--brand); padding-left: 4px; }
+.elementor .footer-links .elementor-icon-list-text { color: inherit; }
+.elementor .footer-contact .elementor-widget-button { margin-top: 1rem; }
+.elementor .e-con.footer-bottom { position: relative; border-top: 1px solid rgba(255, 255, 255, .1); }
+.elementor .e-con.footer-bottom-inner { display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 22px; font-size: .88rem; }
+.elementor .footer-bottom .elementor-widget-text-editor { color: #aaaab3; margin: 0; }
+.elementor .footer-bottom .elementor-widget-text-editor p { margin: 0; }
+
+@media (max-width: 1180px) {
+	.elementor .e-con.footer-grid { grid-template-columns: 1.3fr 1fr 1fr; }
+	.elementor .e-con.footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 1120px) {
+	.elementor .nav-wrap { margin-left: 0; }
+}
+@media (max-width: 680px) {
+	.elementor .e-con.brand { width: 170px; height: 46px; }
+	.elementor .brand .elementor-widget-image img { height: 46px; }
+	.elementor .e-con.footer-grid { grid-template-columns: 1fr; }
+	.elementor .e-con.footer-bottom-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* Mobile: the bar keeps only logo + menu button; the quotation button lives inside the opened menu. */
+@media (max-width: 1120px) {
+	.elementor .elementor-widget-button.header-cta { display: none; }
+	.elementor .e-con.header-inner { flex-wrap: nowrap; }
+}

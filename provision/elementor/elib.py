@@ -80,9 +80,13 @@ def button(label, url='#', cls='', icon=None, new_tab=False):
     return widget('button', s, cls)
 
 
-def image(key, size='large', cls='', alt=''):
+def image(key, size='large', cls='', alt='', link=None):
     i = img(key)
-    return widget('image', {'image': i, 'image_size': size, 'image_custom_dimension': {'width': '', 'height': ''}}, cls)
+    s = {'image': i, 'image_size': size, 'image_custom_dimension': {'width': '', 'height': ''}}
+    if link:
+        s['link_to'] = 'custom'
+        s['link'] = {'url': link, 'is_external': '', 'nofollow': '', 'custom_attributes': ''}
+    return widget('image', s, cls)
 
 
 def icon(name, cls='', library='fa-solid'):
@@ -92,7 +96,12 @@ def icon(name, cls='', library='fa-solid'):
 def icon_list(items, cls='', icon_name=None):
     rows = []
     for t in items:
+        url = None
+        if isinstance(t, (tuple, list)):
+            t, url = t
         row = {'text': t, '_id': rid()}
+        if url:
+            row['link'] = {'url': url, 'is_external': '', 'nofollow': '', 'custom_attributes': ''}
         if icon_name:
             row['selected_icon'] = {'value': icon_name, 'library': 'fa-solid'}
         rows.append(row)

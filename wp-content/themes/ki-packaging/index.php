@@ -1,5 +1,6 @@
 <?php
 get_header();
+ki_main_open();
 ?>
 <section class="section section--first">
 	<div class="container prose">
@@ -16,4 +17,5 @@ get_header();
 	</div>
 </section>
 <?php
+ki_main_close();
 get_footer();

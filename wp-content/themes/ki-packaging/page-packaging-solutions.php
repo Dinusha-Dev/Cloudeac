@@ -3,6 +3,7 @@
  * Packaging Solutions.
  */
 get_header();
+ki_main_open();
 ki_page_hero( array(
 	'eyebrow' => 'Custom packaging',
 	'title'   => 'Packaging Solutions',
@@ -106,4 +107,5 @@ $range = array(
 
 <?php
 get_template_part( 'template-parts/cta-band', null, array( 'title' => 'Need packaging made for your product?', 'text' => 'Share the product, size and quantity and our team will recommend the right pack and send a quotation.' ) );
+ki_main_close();
 get_footer();

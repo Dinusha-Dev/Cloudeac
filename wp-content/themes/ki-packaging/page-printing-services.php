@@ -3,6 +3,7 @@
  * Printing Services.
  */
 get_header();
+ki_main_open();
 ki_page_hero( array(
 	'eyebrow' => 'Offset & commercial printing',
 	'title'   => 'Printing Services',
@@ -95,4 +96,5 @@ $groups = array(
 
 <?php
 get_template_part( 'template-parts/cta-band', null, array( 'title' => 'Have a printing job in mind?', 'text' => 'Tell us the product, size and quantity and we will send you a quotation.' ) );
+ki_main_close();
 get_footer();
